@@ -1,99 +1,18 @@
-import {Component} from 'angular2/core';
-import {OnInit} from 'angular2/core';
-import {Hero} from './hero/hero.ts';
-import {HeroDetailComponent} from './hero-detail.component';
-import {HeroService} from './hero.service';
-
-import {WelcomeComponent} from './common/welcome.component';
-
+import { Component }       from 'angular2/core';
+import { HeroService }     from './hero.service';
+import { HeroesComponent } from './heroes.component';
 @Component({
     selector: 'my-app',
     template: `
-        <h1>{{title}}</h1>
-        <h3>Denkwelten-Branch-heroes</h3>
-        <h2>My Heroes</h2>
-        <ul class="heroes">
-            <li *ngFor="#hero of heroes"
-                (click)="onSelect(hero)"
-                [class.selected]="hero === selectedHero">
-              <span class="badge">{{hero.id}}</span> {{hero.name}}
-            </li>
-        </ul>
-        <my-hero-detail [hero]="selectedHero"></my-hero-detail>
-        `,
-    styles:[`
-      .selected {
-        background-color: #CFD8DC !important;
-        color: white;
-      }
-      .heroes {
-        margin: 0 0 2em 0;
-        list-style-type: none;
-        padding: 0;
-        width: 10em;
-      }
-      .heroes li {
-        cursor: pointer;
-        position: relative;
-        left: 0;
-        background-color: #EEE;
-        margin: .5em;
-        padding: .3em 0;
-        height: 1.6em;
-        border-radius: 4px;
-      }
-      .heroes li.selected:hover {
-        background-color: #BBD8DC !important;
-        color: white;
-      }
-      .heroes li:hover {
-        color: #607D8B;
-        background-color: #DDD;
-        left: .1em;
-      }
-      .heroes .text {
-        position: relative;
-        top: -3px;
-      }
-      .heroes .badge {
-        display: inline-block;
-        font-size: small;
-        color: white;
-        padding: 0.8em 0.7em 0 0.7em;
-        background-color: #607D8B;
-        line-height: 1em;
-        position: relative;
-        left: -1px;
-        top: -4px;
-        height: 1.8em;
-        margin-right: .8em;
-        border-radius: 4px 0 0 4px;
-      }
-    `],
-    directives : [WelcomeComponent, HeroDetailComponent],
-    providers: [HeroService]
+    <h1>{{title}}</h1>
+    <my-heroes></my-heroes>
+  `,
+    directives: [HeroesComponent],
+    providers: [
+        HeroService
+    ]
 })
-export class AppComponent{
-    public title = 'Tour of Heroes';
-
-    heroes: Hero[];
-
-    selectedHero: Hero;
-
-    constructor(private _heroService: HeroService) {  }
-
-    onSelect(hero: Hero) { this.selectedHero = hero; }
-
-    getHeroes() {
-        this._heroService.getHeroes().then(heroes => this.heroes = heroes);
-        //this.heroes = this._heroService.getHeroes();
-    }
-
-    ngOnInit() { this.getHeroes(); }
-
-    public hero: Hero = {
-        id: 1,
-        name: 'Windstorm'
-    };
-};
+export class AppComponent {
+    title = 'Tour of Heroes';
+}
 
