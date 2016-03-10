@@ -1,14 +1,9 @@
 import {Component} from 'angular2/core';
 import {OnInit} from 'angular2/core';
+import {Hero} from './hero/hero.ts';
+import {HeroDetailComponent} from './hero-detail.component';
 
 import {WelcomeComponent} from './common/welcome.component';
-//import {Hero} from './hero/hero';
-
-
-interface Hero {
-    id: number;
-    name: string;
-}
 
 @Component({
     selector: 'my-app',
@@ -23,16 +18,7 @@ interface Hero {
               <span class="badge">{{hero.id}}</span> {{hero.name}}
             </li>
         </ul>
-
-        <div *ngIf="selectedHero">
-            <h2>{{selectedHero.name}} details!</h2>
-            <div><label>id: </label>{{selectedHero.id}}</div>
-            <div>
-                <label>name: </label>
-                <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-            </div>
-        </div>
-
+        <my-hero-detail [hero]="selectedHero"></my-hero-detail>
         `,
     styles:[`
       .selected {
@@ -83,7 +69,7 @@ interface Hero {
         border-radius: 4px 0 0 4px;
       }
     `],
-    directives : [WelcomeComponent]
+    directives : [WelcomeComponent, HeroDetailComponent]
 })
 export class AppComponent{
     public title = 'Tour of Heroes';
