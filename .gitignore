@@ -3,7 +3,7 @@
 
 /.idea/
 
-/app/js
+/js/
 
 *.js
 *.map
