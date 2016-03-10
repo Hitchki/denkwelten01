@@ -4,7 +4,7 @@ import {Component} from 'angular2/core';
     selector : 'welcome-component',
     template : `
        <div class="jumbotron">
-          <h1>Welcome to MyTunes</h1>
+          <h1>Welcome to Heroes-Demo</h1>
           <p><a class="btn btn-primary btn-lg" href="#" role="button" *ngIf="!showMore" (click)="onShowMore()">Learn more</a></p>
           <ul *ngIf="showMore">
             <li>Components</li>
